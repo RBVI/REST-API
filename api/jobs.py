@@ -6,7 +6,7 @@ import logging
 
 import falcon
 
-from .algorithm import Algorithm
+from .service import Service
 
 class Jobs:
     """ A class to keep track of all running jobs """
@@ -18,14 +18,14 @@ class Jobs:
         self.manager = manager
         #logging.basicConfig(filename="/tmp/restLogger.log", level=logging.DEBUG)
 
-    def create_job(self, url: str, algorithm: Algorithm) -> uuid.UUID:
-        """ Create the job record for an Algorithm instance.  This is typically
+    def create_job(self, url: str, service: Service) -> uuid.UUID:
+        """ Create the job record for an Service instance.  This is typically
             called by the algorithm upon initiation to register it's instance """
         # Create the uuid
         job_uuid = uuid.uuid4()
         # Add it to the list
-        self.active_jobs[job_uuid] = algorithm
-        #logging.info('Created job %s for algorithm %s [%d]'%(str(job_uuid), algorithm, os.getpid()))
+        self.active_jobs[job_uuid] = service
+        #logging.info('Created job %s for service %s [%d]'%(str(job_uuid), service, os.getpid()))
         return job_uuid
 
     def remove_job(self, job_uuid: uuid.UUID):

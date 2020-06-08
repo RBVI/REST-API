@@ -26,11 +26,11 @@ def create_app(mgr: Manager):
     algorithms = Algorithms(jobs)
     api.add_route('/services', algorithms)
     for algorithm in algorithms.get_algorithms():
-        api.add_route('/services/'+algorithm, algorithms.get_algorithm(algorithm))
+        api.add_route('/service/'+algorithm, algorithms.get_algorithm(algorithm))
 
     return api
 
 
 def get_app():
-    return create_app()
+    return create_app(Manager())
 

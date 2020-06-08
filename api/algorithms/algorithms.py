@@ -1,4 +1,4 @@
-from .jobs import Jobs
+from api.jobs import Jobs
 from .fastgreedy import FastGreedy
 from .infomap import Infomap
 from .leiden import Leiden

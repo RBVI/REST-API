@@ -8,7 +8,7 @@ import json
 import falcon
 from multiprocessing import Manager,Process
 
-from .jobs import Jobs
+from api.jobs import Jobs
 import api.utils as utils
 
 class BaseAlgorithm():

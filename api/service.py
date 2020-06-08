@@ -6,7 +6,7 @@ import abc
 import falcon
 from uuid import UUID
 
-class Algorithm(metaclass=abc.ABCMeta):
+class Service(metaclass=abc.ABCMeta):
     """ Interface for all algorithms """
     @classmethod
     def __subclasshook__(cls, subclass):
