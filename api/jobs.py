@@ -62,6 +62,14 @@ class Jobs:
             add_error(resp, "No such job")
             return
 
+        if path.startswith("/terminate/"):
+            uid = get_job_id(job_id)
+            if uid in self.active_jobs:
+                self.active_jobs[uid].terminate(uid, req, resp)
+                return
+            add_error(resp, "No such job")
+            return
+
         if path.startswith("/jobs"):
             return
 

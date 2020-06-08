@@ -2,7 +2,7 @@ import falcon
 from falcon_multipart.middleware import MultipartMiddleware
 from multiprocessing import Manager
 from .scnetviz import ScNetVizHandler
-from .algorithms import Algorithms
+from .algorithms.algorithms import Algorithms
 from .jobs import Jobs
 
 manager = None
@@ -22,10 +22,11 @@ def create_app(mgr: Manager):
     jobs = Jobs(mgr)
     api.add_route('/status/{job_id}', jobs)
     api.add_route('/fetch/{job_id}', jobs)
+    api.add_route('/terminate/{job_id}', jobs)
     algorithms = Algorithms(jobs)
-    api.add_route('/algorithms', algorithms)
+    api.add_route('/services', algorithms)
     for algorithm in algorithms.get_algorithms():
-        api.add_route('/algorithm/'+algorithm, algorithms.get_algorithm(algorithm))
+        api.add_route('/services/'+algorithm, algorithms.get_algorithm(algorithm))
 
     return api
 

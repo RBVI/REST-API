@@ -37,6 +37,6 @@ class Algorithm(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def terminate(self, uid: UUID):
+    def terminate(self, uid: UUID, req: falcon.Request, resp: falcon.Response):
         """ Called to kill the running algorithm """
         raise NotImplementedError
